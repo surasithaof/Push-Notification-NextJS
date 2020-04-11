@@ -1,2 +1,2 @@
 # Push-Notification-NextJS
-Create a NextJS web app with Push Notification
+A NextJS web app with Push Notification
