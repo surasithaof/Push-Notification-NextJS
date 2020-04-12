@@ -1,9 +1,11 @@
 console.log("Service Worker Loaded...");
 
 self.addEventListener("push", (e) => {
-  const data = e.data.json();
+  // const data = e.data.json();
+  // console.log(data);
+  let title = "Push Test";
   console.log("Push Recieved...");
-  self.registration.showNotification(data.title, {
+  self.registration.showNotification(title, {
     body: "Notified by Web Push Service!",
     icon: "/favicon.ico",
   });
