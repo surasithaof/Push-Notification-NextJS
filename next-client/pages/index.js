@@ -18,8 +18,8 @@ const Home = () => {
     a = a.getTime();
     console.log(a);
 
-    setTimeout(sendNotification, 3000);
-    console.log(sendNotification);
+    // setTimeout(sendNotification, 3000);
+    // console.log(sendNotification);
     // if ("serviceWorker" in navigator) {
     //   console.log("serviceWorker");
     //   // sendNotification().catch((err) => console.error(err));
@@ -70,6 +70,22 @@ const Home = () => {
       outputArray[i] = rawData.charCodeAt(i);
     }
     return outputArray;
+  }
+
+  async function showLocalNotification() {
+    const swRegistration = await navigator.serviceWorker.register(
+      "/worker.js",
+      {
+        scope: "/",
+      }
+    );
+    let recId = "S1234";
+    let title = `Your receipID ${recId} will expire in 7 days`;
+
+    swRegistration.showNotification(title, {
+      body: "Notified by Web Push Service!",
+      icon: "/favicon.ico",
+    });
   }
 
   return (
@@ -167,7 +183,8 @@ const Home = () => {
           </a>{" "}
           <br />
         </p>
-        <button onClick={sendNotification}>Send Push Notification</button>
+        {/* <button onClick={sendNotification}>Send Push Notification</button> */}
+        <button onClick={showLocalNotification}>Send Push Notification</button>
       </div>
 
       <style jsx>{`
